@@ -1,0 +1,618 @@
+package for_DSA;            /* Stack of int data */
+
+import java.util.Scanner;
+
+class intStack{
+	   private int arr[];
+	   private int top;
+
+	 public intStack()
+	 {
+	    arr=new int[10];
+	    top=-1;
+	 }
+
+	 public intStack(int s)
+	 {
+	    arr=new int[s];
+	    top=-1;
+	 }
+
+	 public boolean isFull()
+	 {
+	   if(top==arr.length-1)
+	       return true;
+	   else
+	       return false;
+	 }
+
+	 public boolean isEmpty()
+	 {
+	    if(top==-1)
+	        return true;
+	    else
+	        return false;
+	 }
+
+	 public void push(int data)
+	 {
+	    if(!isFull())  //if(top<arr.length-1)
+	    {
+	      top=top+1;
+	      arr[top]=data;
+	    }
+	    else System.out.print("stack overflow.. can't push..\n");
+
+	    return;
+	 }
+
+	 public int pop()
+	 {
+	   int data=-999;
+	   if(!isEmpty())   //    if(top!=-1)
+	   {  
+	     data=arr[top];
+	     top=top-1;
+	   }
+	   else System.out.print("stack underflow.. can't pop..\n");
+
+	   return data;
+	 }
+	  
+	 public int peek()
+	 {
+	    int data=-999;
+	    if(top==-1)
+	       System.out.print("Stack underflow.. can not perform peek..\n");
+	    else
+	     data=arr[top];
+
+	    return data;
+	 }
+
+	 public String toString()
+	 {
+	   int i;
+	   String str=new String();
+	   if(isEmpty())
+	   {
+	      System.out.print("Stack is empty..\n");   
+	      return " ";
+	   }
+	   str=str + "Stack elements are: ";
+	   for(i=top;i>=0;i--)
+	    str=str+" "+arr[i];
+	 
+	   return str;
+	 }//end of toString
+	}//end of class  
+
+
+public class intStackMain {
+
+	public static void main(String[] args) {
+		int choice, data;
+	     intStack st=new intStack();
+	     Scanner sc=new Scanner(System.in);
+	     do {
+	       System.out.print("\n1. Push \n");
+	       System.out.print("2. Pop \n");
+	       System.out.print("3. Peek \n");
+	       System.out.print("4. Display \n");
+	       System.out.print("5. Exit \n");
+	       choice = sc.nextInt();
+	       switch(choice)
+	       {
+	          case 1:
+		     System.out.print("Enter data to be pushed : ");
+	             data=sc.nextInt();  //20
+	             st.push(data);
+	             break;
+	          case 2:
+	             data=st.pop();
+	             System.out.print("Popped data : " + data + "\n");
+	             break;
+	          case 3:
+	             data=st.peek();
+	             System.out.print("Data at top : " + data + "\n");
+	             break;
+	          case 4:
+	             System.out.print(st);
+	             break;
+	          case 5:  break;
+	          default: System.out.print("Invalid choice..\n");
+	       }//end of switch
+	    }while(choice!=5);
+	     sc.close();
+	  }//end of main
+}//end of class
+
+
+
+_______________________________________________________________
+
+package for_DSA;          //Stack of student object
+
+import java.util.Scanner;
+
+class Student{
+	private int rno;
+	String name;
+	float marks;
+	public Student(int rno, String name, float marks) {
+		super();
+		this.rno = rno;
+		this.name = name;
+		this.marks = marks;
+	}
+	@Override
+	public String toString() {
+		return "Student [rno=" + rno + ", name=" + name + ", marks=" + marks + "]";
+	}
+	public int getRno() {
+		return rno;
+	}
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public float getMarks() {
+		return marks;
+	}
+	public void setMarks(float marks) {
+		this.marks = marks;
+	}
+	
+}
+
+
+class studentStack{
+	   private Student arr[];
+	   private int top;
+
+	 public studentStack()
+	 {
+	    arr=new Student[10];
+	    top=-1;
+	 }
+
+	 public studentStack(int s)
+	 {
+	    arr=new Student[s];
+	    top=-1;
+	 }
+
+	 public boolean isFull()
+	 {
+	   if(top==arr.length-1)
+	       return true;
+	   else
+	       return false;
+	 }
+
+	 public boolean isEmpty()
+	 {
+	    if(top==-1)
+	        return true;
+	    else
+	        return false;
+	 }
+
+	 public void push(Student data)
+	 {
+	    if(!isFull())  //if(top<arr.length-1)
+	    {
+	      top=top+1;
+	      arr[top]=data;
+	    }
+	    else System.out.print("stack overflow.. can't push..\n");
+
+	    return;
+	 }
+
+	 public Student pop()
+	 {
+	   Student data=null;
+	   if(!isEmpty())   //    if(top!=-1)
+	   {  
+	     data=arr[top];
+	     top=top-1;
+	   }
+	   else System.out.print("stack underflow.. can't pop..\n");
+
+	   return data;
+	 }
+	  
+	 public Student peek()
+	 {
+	    Student data=null;
+	    if(top==-1)
+	       System.out.print("Stack underflow.. can not perform peek..\n");
+	    else
+	     data=arr[top];
+
+	    return data;
+	 }
+
+	 public String toString()
+	 {
+	   int i;
+	   String str=new String();
+	   if(isEmpty())
+	   {
+	      System.out.print("Stack is empty..\n");   
+	      return " ";
+	   }
+	   str=str + "Stack elements are: \n ";
+	   for(i=top;i>=0;i--)
+	    str=str+" \n "+arr[i];
+	 
+	   return str;
+	 }//end of toString
+	}//end of class  
+
+	 
+
+
+	public class studentStackMain{
+
+	 public static void main(String []str)
+	 {
+	     int choice;
+	     Student data;
+	     int r, age;
+	     String name;
+	     studentStack st=new studentStack();
+	     Scanner sc=new Scanner(System.in);
+	     do {
+	       System.out.print("\n1. Push \n");
+	       System.out.print("2. Pop \n");
+	       System.out.print("3. Peek \n");
+	       System.out.print("4. Display \n");
+	       System.out.print("5. Exit \n");
+	       choice = sc.nextInt();
+	       switch(choice)
+	       {
+	          case 1:
+		     System.out.print("Enter rno : ");
+	             r=sc.nextInt();
+		     System.out.print("Enter age : ");
+	             age=sc.nextInt();
+		     System.out.print("Enter name : ");
+	             name=sc.next();
+	             data = new Student(r,name,age);
+	             st.push(data);
+	             break;
+	          case 2:
+	             data=st.pop();
+	             System.out.print("Popped data : " + data + "\n");
+	             break;
+	          case 3:
+	             data=st.peek();
+	             System.out.print("Data at top : " + data + "\n");
+	             break;
+	          case 4:
+	             System.out.print(st);
+	             break;
+	          case 5:  break;
+	          default: System.out.print("Invalid choice..\n");
+	       }//end of switch
+	    }while(choice!=5);
+	     sc.close();
+	  }//end of main
+	 }//end of class
+
+___________________________________________________________________
+
+package for_DSA;                // simple queue of int
+
+import java.util.Scanner;
+
+class intQueue {
+	   private int arr[];           
+	   private int front,rear,size;
+
+	  public intQueue()
+	  {
+	     front=rear=-1;
+	     size=10;
+	     arr=new int[size];
+	  }
+
+	  public intQueue(int s)
+	  {
+	     front=rear=-1;
+	     size=s;
+	     arr=new int[size];
+	  }
+
+	  public void insert(int d)
+	  {
+	     if(isFull())
+	     {
+	       System.out.print("Queue overflow..");
+	       return ;
+	     }
+
+	     if(front==-1)
+	        front=0;
+
+	     rear=rear+1;
+	     arr[rear]=d;
+	     return;
+	  }
+
+	 
+	  public int del()
+	  {
+	    int d=-999;
+	    if(isEmpty())
+	    {
+	       System.out.print("underflow...");
+	       return d;
+	    }
+	    d=arr[front];
+	    front=front+1;
+	    return d;
+	  }
+
+	  public int peek()
+	  {
+	    int d=-999;
+	    if(isEmpty())
+	    {
+	       System.out.print("underflow...");
+	       return d;
+	    }
+	    d=arr[front];
+	    return d;
+	  }
+
+	  public boolean isEmpty()
+	  {
+	    if((front==-1) || (front == rear+1))
+	       return true;
+	    else
+	       return false;
+	  }
+
+	  public boolean isFull()
+	  {
+	    if(rear==size-1)
+	      return true;
+	    else
+	      return false;
+	  }
+
+	  public String toString()
+	  {
+	    int i;
+	    String str=new String();
+	    if(isEmpty())
+	    {
+	       System.out.print("Empty..");
+	       return " "; 
+	    }
+	    str=str+"Queue :";
+	    for(i=front;i<=rear;i++)
+	       str=str+" "+arr[i];    
+
+	    str=str+"\n";
+	    return str;
+	  }
+	}//end of class
+
+public class intQueueMain {
+	public static void main(String[] args) {
+		int choice, data;
+		intQueue st=new intQueue();
+	     Scanner sc=new Scanner(System.in);
+	     do {
+	       System.out.print("1. Insert \n");
+	       System.out.print("2. Remove \n");
+	       System.out.print("3. Peek \n");
+	       System.out.print("4. Display \n");
+	       System.out.print("5. Exit \n");
+	       choice = sc.nextInt();
+	       switch(choice)
+	       {
+	          case 1:
+		     System.out.print("Enter data to be pushed : ");
+	             data=sc.nextInt();  //20
+	             st.insert(data);
+	             break;
+	          case 2:
+	             data=st.del();
+	             System.out.print("Popped data : " + data + "\n");
+	             break;
+	          case 3:
+	             data=st.peek();
+	             System.out.print("Data at top : " + data + "\n");
+	             break;
+	          case 4:
+	             System.out.print(st);
+	             break;
+	          case 5:  break;
+	          default: System.out.print("Invalid choice..\n");
+	       }//end of switch
+	    }while(choice!=5);
+	     sc.close();
+	  }//end of main
+
+}
+
+_______________________________________________________________________
+
+
+package for_DSA;          //Circular queue of int
+
+import java.util.Scanner;
+
+class intCircularQueue{
+	 private int arr[];
+	 private int front,rear,size;
+
+	 public intCircularQueue()
+	 {
+	   front=rear=-1;
+	   size=10;
+	   arr=new int[size];
+	 }
+
+	 public intCircularQueue(int s)
+	 {
+	   front=rear=-1;
+	   size=s;
+	   arr=new int[size];
+	 }
+
+	 public boolean isEmpty()
+	 {
+	    if(front==-1)
+	      return true;
+	    else
+	      return false;
+	 }
+
+	 public boolean isFull()
+	 {
+	   if(((front==0)&&(rear==size-1))||(front==rear+1))
+	      return true;
+	   else
+	      return false;
+	 }
+
+	 public void insert(int d)
+	 {
+	   System.out.println("\nfront = "+front+"  rear = "+rear);
+	   if(isFull())
+	   {
+		   System.out.println("Overflow...");
+	      return;
+	   }
+
+	   if(front==-1)
+	     front=0;
+
+	   if(rear==size-1)
+	     rear=0;
+	   else
+	     rear=rear+1;
+	   
+	   arr[rear]=d;
+
+	   return;
+	 }
+
+	 public int del()
+	 {
+	    int d=-999;
+	    if(isEmpty())
+	    {
+	      System.out.println("Underflow..."); 
+	      return d;
+	    }
+	  
+	    d=arr[front];
+
+	    if(front==rear) // last element
+	    {
+	      front=rear=-1;
+	    }
+	    else if(front==size-1)
+	       front=0;
+	    else
+	       front=front+1;
+
+	    return d;
+	 }//end of del
+
+     public int peek()
+     {
+    	 if(!isEmpty())
+    		 return arr[front];
+    	 else
+    		 return -999;
+     }
+     
+	 public String toString()
+	 {
+	    String str=new String();
+	    int i;
+	    if(isEmpty())
+	    {
+	      return "Empty...";
+	    }
+
+	    i=front;
+	    if(front<=rear)
+	    {
+	      while(i<=rear)
+	      {
+	         str=str+" "+arr[i];  
+	         i=i+1;
+	      }  
+	    }
+	    else
+	    {
+	       while(i<=size-1)
+	       {
+	         str = str +" "+arr[i];
+	         i=i+1;
+	       }
+	       i=0;
+	       while(i<=rear) 
+	       {
+	         str = str +" "+arr[i];
+	         i=i+1;
+	       }
+	    }//end of else
+	    str=str+"\n";
+	    return str;
+	 }
+	}//end of class
+
+
+public class CircularQueueMain {
+	public static void main(String[] args) {
+		int choice, data;
+		intCircularQueue st=new intCircularQueue();
+	     Scanner sc=new Scanner(System.in);
+	     do {
+	       System.out.print("1. Insert \n");
+	       System.out.print("2. Remove \n");
+	       System.out.print("3. Peek \n");
+	       System.out.print("4. Display \n");
+	       System.out.print("5. Exit \n");
+	       choice = sc.nextInt();
+	       switch(choice)
+	       {
+	          case 1:
+		     System.out.print("Enter data to be pushed : ");
+	             data=sc.nextInt();  //20
+	             st.insert(data);
+	             break;
+	          case 2:
+	             data=st.del();
+	             System.out.print("Popped data : " + data + "\n");
+	             break;
+	          case 3:
+	             data=st.peek();
+	             System.out.print("Data at top : " + data + "\n");
+	             break;
+	          case 4:
+	             System.out.print(st);
+	             break;
+	          case 5:  break;
+	          default: System.out.print("Invalid choice..\n");
+	       }//end of switch
+	    }while(choice!=5);
+	     sc.close();
+	  }//end of main
+}
+

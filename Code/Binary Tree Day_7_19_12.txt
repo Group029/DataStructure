@@ -1,0 +1,353 @@
+sum leaf node, sum non leaf nodes,  find min value, find max value
+count level, mirror image, isIdentical
+
+
+public int sum_leafNode()
+{
+  int sum = 0;
+  
+  BTNode iter = root;
+  
+  //check if root is null and return
+  Queue <BTNode>q = new LinkedList<BTNode>();
+
+  q.add(iter);
+  while(!q.isEmpty())
+  {
+    iter = q.remove();
+    if((iter.getLeft() == null) && (iter.getRight() == null))
+    {
+       sysout(" "+iter.getData());
+       sum = sum + iter.getData();
+    }
+   
+    if(iter.getLeft()!=null)
+       q.add(iter.getLeft());
+
+    if(iter.getRight()!=null)
+       q.add(iter.getRight());
+
+  }//end of loop
+  return sum;
+}
+
+
+public int min()
+{
+   int min = root.getData();
+  
+   BTNode iter = root;
+  
+  //check if root is null and return
+  Queue <BTNode>q = new LinkedList<BTNode>();
+
+  q.add(iter);
+  while(!q.isEmpty())
+  {
+    iter = q.remove();
+
+    if(iter.getData() < min)
+       min = iter.getData();
+
+    if(iter.getLeft()!=null)
+      q.add(iter.getLeft();
+
+    if(iter.getRight()!=null)
+      q.add(iter.getRight());
+ }
+
+
+
+ // write function for max
+
+
+ public int count_level()
+ {
+   int level = 0;
+   BTNode iter = root;
+   BTNode dummy = new BTNode(-999);
+   //check if root is null and return
+   Queue <BTNode>q = new LinkedList<BTNode>();
+
+   q.add(iter);
+   q.add(dummy);
+
+   while(!q.isEmpty())
+   {
+     iter = q.remove();
+ 
+     if(iter.getData()==-999)
+     {
+        level++;
+        q.add(dummy);
+        iter=q.remove();
+     }    
+
+     if(iter.getLeft()!=null)
+       q.add(iter.getLeft();
+
+     if(iter.getRight()!=null)
+       q.add(iter.getRight());
+    }
+
+    return level;
+ }
+
+ public void swap(BTNode p1)
+ {
+   BTNode t;
+   t=p1.getLeft();
+   p1.setLeft(p1.getRight());
+   p1.setRight(t);
+ }
+
+ 
+
+ public void mirror_image()
+ {
+   BTNode iter = root;
+  
+   //check if root is null and return
+   Queue <BTNode>q = new LinkedList<BTNode>();
+
+   q.add(iter);
+   while(!q.isEmpty())
+   {
+      iter = q.remove();
+
+      swap(iter);
+  
+      if(iter.getLeft()!=null)
+       q.add(iter.getLeft();
+
+     if(iter.getRight()!=null)
+       q.add(iter.getRight());
+   }
+   return;
+  }//end of function
+
+
+ public static boolean isIdentical(BTNode r1, BTNode r2)
+ {
+    BTNode iter1 = r1, iter2 = r2;
+    //check in case any one or both BTNode is null, return false 
+    
+    Queue <BTNode>q1 = new LinkedList<BTNode>();
+    Queue <BTNode>q2 = new LinkedList<BTNode>();
+
+    q1.add(iter1);
+    q2.add(iter2);
+
+    while((!q1.isEmpty()) && (!q2.isEmpty())
+    {
+      iter1.q1.remove();
+      iter2.q2.remove();
+
+      if(iter1.getData() != iter2.getData())
+           return false;
+    
+      
+      if(iter1.getLeft()!=null)
+         q1.add(iter1.getLeft();
+
+      if(iter1.getRight()!=null)
+         q1.add(iter1.getRight());
+
+
+      if(iter2.getLeft()!=null)
+         q2.add(iter2.getLeft();
+
+      if(iter2.getRight()!=null)
+        q2.add(iter2.getRight());
+    }
+
+    if(q1.isEmpty()  &&  q2.isEmpty())
+       return true;
+    else
+       return false;
+ }
+
+
+__________________________________________________________________
+
+BST - Binary Search Tree
+
+insert, preorder, inorder, postorder, min, max, leaf node, find_height, del_node
+
+bt.insert(60);
+
+
+
+
+class BST_Rec {
+  BTNode root;
+
+  public BST_Rec()
+  {
+   root=null;
+  }
+
+
+  public void insert(int d)
+  {
+     root = insert_BST(root,d);
+  }
+ 
+
+  private BTNode insert_BST(BTNode ptr, int d)
+  {
+   if(ptr == null)
+     ptr = new BTNode(d);
+
+   else if(d < ptr.getData())
+     ptr.setLeft(insert_BST(ptr.getLeft(),d);
+
+   else if(d > ptr.get.Data())
+     ptr.setRight(insert_BST(ptr.getRight(),d);
+
+   else
+     sysout("\n Duplicate data...";
+
+   return ptr;
+  }
+
+  public void  preOrder()
+  {
+     visit_preOrder(root);
+  }
+
+  private void visit_preOrder(BTNode r)
+  {
+    if(r==null)  return;
+
+     sysout("  " +r.getData());
+     visit_preOrder(r.getLeft());
+
+     visit.preOrder(r.getRight());
+  }
+
+  public BTNode search(int key)
+  {
+     return BST_Search(root,key);
+  }
+
+  private BTNode BST_Search(BTNode r, int k)
+  {
+    if(r == null)
+    {
+       sysout("Key not found...\n");
+       return null;
+    }
+    else if(k < r.getData())
+      return BST_Search(r.getLeft(),k);
+
+    else if(k > r.getData())
+      return BST_Search(r.getRight(),k);
+
+    else return r;
+  }
+
+
+
+  public int find_min()
+  {
+    return min_BST(root);
+  }
+
+
+  private int min_BST(BTNode r)
+  {
+    if(r.getLeft()==null)
+      return r.getData();
+
+    return min_BST(r.getLeft());
+  }
+
+
+
+
+
+
+
+
+ 
+
+
+  
+
+
+
+}
+
+public class BSTMain {
+  public static void main(String []a)
+  {
+    BST_Rec bst = new BST_Rec();
+ 
+    bst.insert(20);
+    bst.insert(25);
+    bst.insert(15);
+    bst.insert(35);
+    bst.insert(22);
+    bst.insert(32);
+    bst.insert(8);
+    bst.insert(10);
+    bst.insert(18);
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

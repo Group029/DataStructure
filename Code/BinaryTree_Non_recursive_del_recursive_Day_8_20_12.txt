@@ -1,0 +1,190 @@
+public void insert(int d)
+{
+  BTNode ptr, par;
+  
+  if(root == null) { root = new BTNode(d); return; }
+  ptr=root;
+
+  while(ptr!=null)
+  {
+    par = ptr;
+    if(d < ptr.getData())
+       ptr = ptr.getLeft();
+
+    if(d > ptr.getData())
+       ptr = ptr.getRight();
+
+    else
+    {
+       sysout("Duplicate data...");
+       return;
+    }
+  }
+  ptr = new BTNode(d);
+  
+  if( d < par.getData())
+    par.setLeft(ptr);
+  else
+    par.setRight(ptr);
+
+  return;
+
+ }
+
+ public BTNode search(int d)
+ {
+    BTNode ptr = root;
+    
+    while(ptr!=null)
+    {
+      if( d == ptr.getData())
+         return ptr;
+      else if( d < ptr.getData())
+        ptr = ptr.getLeft();
+      else ptr = ptr.getRight();
+    }
+
+    sysout("Not found...");
+    return null;
+  }
+
+
+  public int min_nonRec()
+  {
+     BTNode ptr = root;
+
+     if(ptr == null) { sysout("Tree is empty.."); return; }
+
+     while(ptr.getLeft()!=null)
+       ptr = ptr.getLeft();
+
+     return ptr.getData();
+  }
+
+
+ 
+ public void del(int d)
+ {
+   root = del_node_BST(root, d);
+ }
+ 
+ private BTNode del_node_BST(BTNode r, int d)
+ {                            
+   BTNode deletable, succ;
+
+   if(r == null)
+   {
+     sysout("Empty...");
+     return null;
+   }
+   if( d < r.getData())        // delete from left subtree
+     r.setLeft(del_node_BST(r.getLeft(),d));
+
+   else if( d > r.getData())   // delete from right subtree
+     r.setRight(del_node_BST(r.getRight(),d));
+   
+   else
+   {
+      if(r.getLeft() != null && r.getRight() != null)
+      {
+         succ = r.getRight();
+         while(succ.getLeft()!=null)
+             succ = succ.getLeft();
+
+         r.setData(succ.getData());
+         r.setRight(del_node_BST(r.getRight(),succ.getData();
+      }
+      else
+      {
+        deletable = r;
+        if(r.getLeft() != null)   // only left child
+           r = r.getLeft();
+        else if(r.getRight() != null)  // only right child
+           r = r.getRight();
+        else
+           r = null;
+        
+        deletalbe= null;
+      }
+    }
+    return r;
+}//end of function
+
+
+
+public int height()
+{
+   return find_ht(root);
+}
+
+
+int find_ht(BTNode ptr)
+{
+   int h_left, h_right;
+
+   if(ptr == null) return 0;
+
+   h_left = find_ht(ptr.getLeft());
+
+   h_right = find_ht(ptr.getRight());
+ 
+   if( h_left > h_right)
+     return 1 + h_left;
+   else
+     return 1 + h_right;
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+

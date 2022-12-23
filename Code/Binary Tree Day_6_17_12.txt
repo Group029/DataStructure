@@ -1,0 +1,291 @@
+Linked List of students
+
+1. Insert first, last, before Rno, insert sorted on rno
+2. delete by rno
+3. search rno, update marks (update marks)
+4. Search - 
+
+   Show the records of all students whose name starts from alphabet 'C'
+   Show the records of all students total marks > 275
+
+   transfer these records into a data file
+5. Exit   
+
+______________________________________________
+
+2 LLs are identical or not
+
+  public static boolean isIdentical(SListNode iter1,SListNode iter2)
+  {
+    while(iter1!=null && iter2!=null)
+    {
+      if(iter1.getData() != iter2.getData())
+           return false;
+
+      iter1=iter1.getNext();
+      iter2=iter2.getNext();
+    }
+
+    if((iter1==null) && (iter2==null))
+       return true;
+    else
+       return false;
+  }
+
+
+  public static boolean isPalindrome(List_other ll)
+  {
+     SListNode slow, fast, slowp, second_list;
+     boolean res;
+
+     slow = fast = slowp = ll.getHead();
+
+     while((fast!=null) && (fast.getNext()!=null))
+     {
+       slowp = slow;
+       slow = slow.getNext();
+       fast = fast.getNext().getNext();
+     }
+  
+     
+   
+     if(fast.getNext() == null) //odd nodes
+     {
+       second_list= slow.getNext();
+       second_list = reverse(second_list);
+       slowp.setNext(null);
+       res = isIdentical(ll.getHead(),second_list);
+       second_list = reverse(second_list);
+       slowp.setNext(slow);
+       slow.setNext(second_list);
+     }
+     else
+     {
+       second_list= slowp.getNext();
+       second_list = reverse(second_list);
+       slow.setNext(null);
+       res = isIdentical(ll.getHead(),second_list);
+       second_list = reverse(second_list); 
+       slow.setNext(second_list);
+     }
+
+     return res;
+  }
+
+
+_________________________________________________________
+
+
+
+class BTNode {
+  private int data;
+  private BTNode left, right;
+
+  public BTNode() { data = 0 ; left = null ; right = null; }
+
+ 
+  public BTNode(int d) { data = d ; left = null ; right = null; }
+        
+
+  int getData() { return data; }
+  
+  BTNode getLeft() { return left; }
+ 
+  BTNode getRight() { return right; }
+
+  void setData(int d) { data =d ; }
+
+  void setLeft(BTNode l) { left = l; }
+
+  void setRight(BTNode r) { right = r; }
+ 
+}
+
+
+class BinaryTree {
+   private BTNode root;
+
+   public BinaryTree() { root = null; }
+
+   public void setRoot(BTNode r) { root = r; }
+
+   public BTNode getRoot() { return root; }
+
+   
+   public BTNode createNode(int d)
+   {
+     BTNode new_node = new BTNode(d);
+     return new_node;
+   }
+
+   public void preOrder()
+   {
+     visit_Preorder(root);
+   }
+     
+   private void visit_Preorder(BTNode r)
+   {
+     if(r==null) return;
+
+     sysout("  " + r.getData());
+     visit_Preorder(r.getLeft());
+     visit_Preorder(r.getRight());
+   }
+
+}
+
+public void insert(int d)
+{
+   BTNode new_node = new BTNode(d)
+
+   BTNode ref;
+
+   BTNodeQueueNode q = new BTNodeQueueNode();
+
+   if(root == null)
+   {
+      root = new_node;
+      return;
+   }
+
+   
+   q.add(root);
+
+   while(!q.isEmpty())
+   {
+      
+      ref = q.remove();
+      if(ref.getLeft() == null)
+      {
+         ref.setLeft(new_node);
+         return;
+      }
+      else
+         q.add(ref.getLeft());
+
+     
+      if(ref.getRight() == null)
+      {
+         ref.setRight(new_node);
+         return;
+      }
+      else
+         q.add(ref.getRight());
+
+  }
+}
+
+public void level_traverse()
+{
+  BTNode ref = root;
+
+  if(root == null)  return;
+
+  Queue <BTNode> q = new LinkedList<BTNode>();
+
+  q.add(ref);
+  while(!q.isEmpty())
+  {
+    ref = q.remove();
+    sysout(ref.getData() + "   ");
+    if(ref.getLeft()!=null)
+      q.add(ref.getLeft());
+    if(ref.getRight()!=null)
+      q.add(ref.getRight());
+  }
+}
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public static void main(String []a)
+{
+    BinaryTree bt = new BinaryTree();
+  
+
+    bt.setRoot(bt.createNode(10));
+
+    bt.getRoot().setRight(bt.createNode(20));
+
+
+    bt.getRoot().setLeft(bt.createNode(7));
+    bt.preOrder();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class BTNodeQueueNode {
+   BTNode data;
+   BTNodeQueueNode
+
+
+
+
+
+
+
+
+ 

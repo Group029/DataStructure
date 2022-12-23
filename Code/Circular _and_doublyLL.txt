@@ -1,0 +1,487 @@
+package Infoway_code;
+
+import java.util.Scanner;
+class SListNode{
+	int data;
+	SListNode next;
+	
+	public SListNode() {
+		data = 0;
+		next = null;
+	}
+	
+	public SListNode(int d) {
+		data = d;
+		next = null;
+	}
+	public int getData() {
+		return data;
+	}
+	public void setData(int d) {
+		data = d;
+	}
+	public SListNode getNext() {
+		return next;
+	}
+	public void setNext(SListNode n) {
+		next = n;
+	}
+	
+}
+
+
+
+class CircularLL {
+	  
+	   SListNode last;
+
+	  public CircularLL()
+	  {
+	     last = null;
+	  }
+
+	  public void insert_first(int d)
+	  {
+	    SListNode new_node = new SListNode(d);
+	    
+	    if(last == null)  
+	    {
+	       last = new_node;
+	       last.setNext(last);
+	       return;
+	    }
+	    new_node.setNext(last.getNext());
+	    last.setNext(new_node);
+	    return;
+	  }
+
+	  public void insert_last(int d)
+	  {
+	    SListNode new_node = new SListNode(d);
+	   
+	    if(last == null)
+	    {
+	       last = new_node;
+	       last.setNext(last);
+	       return;
+	    }
+
+	    new_node.setNext(last.getNext());
+	    last.setNext(new_node);
+	    last = new_node;
+	    return;
+	  }
+
+	  public String toString()
+	  {
+	     String str="";
+	     SListNode iter;
+
+	     if(last == null)
+	     {
+	       str="Empty..";
+	       return str;
+	     }
+	     
+	     str = "\n List ->";
+
+	     iter = last.getNext();
+	    
+	     do {
+	        str = str + "->" + iter.getData();
+
+	        iter = iter.getNext();
+	     
+	     }while(iter!=last.getNext());
+	     str = str + "\n";
+	     
+	     return str;
+	  }
+
+	  
+
+	  public void insert_by_pos(int d, int pos)
+	  {
+	    SListNode new_node = new SListNode(d);
+	    SListNode iter;
+	    int i;
+	 
+	    if(pos==1)
+	    {
+	      if(last == null)
+	      {
+	         last = new_node;
+	         last.setNext(last);
+	         return;
+	      }
+	      else
+	      {
+
+	    	new_node.setNext(last.getNext());
+	  	    last.setNext(new_node);
+	  	    return;
+	      }
+	    }
+	    
+	    iter=last.getNext();
+	    
+	    for(i=1; i<pos-1 && iter.getNext()!=last.getNext() ; i++,iter=iter.getNext()) ;
+
+	    if((i==pos-1)&&(iter.getNext()!=last.getNext()))
+	    {
+	       new_node.setNext(iter.getNext());
+	       iter.setNext(new_node);
+	       return;
+	    }
+	    
+	    if((i==pos-1) && ( iter==last))
+	    {
+	    	new_node.setNext(last.getNext());
+		    last.setNext(new_node);
+		    last = new_node;
+		    return;
+
+	    }
+	 }
+	  
+	  public int del_first()
+	  {
+	    int d = -999;
+	    if(last==null)
+	    {
+	      return d;
+	    }
+
+	    if(last.getNext()==last)
+	    {
+	       last.setNext(null);
+	       d=last.getData();
+	       last=null;
+
+	       return d;
+	    }
+	    
+	    SListNode deletable = last.getNext();
+	 
+	    last.setNext(deletable.getNext());
+	    d=deletable.getData();
+	   
+	    deletable = null;
+	    return d;
+	  }
+
+}
+
+public class CirculcarLLMain {
+
+			public static void main(String[] args) {
+			CircularLL ll = new CircularLL();
+			Scanner sc=new Scanner(System.in);
+			int choice, data, pos, cnt;
+			do {
+			       System.out.print("1. Insert First\n");
+			       System.out.print("2. Insert Last \n");
+			       System.out.print("3. Insert at position \n");
+			       System.out.print("4. Delete data \n");
+			       System.out.print("5. Print LL \n");
+			       System.out.print("6. Exit \n");
+			       
+			       choice = sc.nextInt();
+			       switch(choice)
+			       {
+			          case 1:
+			        	  System.out.print("Enter data to insert : ");
+			        	  data=sc.nextInt();  //20
+			        	  ll.insert_first(data);
+			        	  break;
+			          case 2:
+			        	  System.out.print("Enter data to insert : ");
+			        	  data=sc.nextInt();
+			        	  ll.insert_last(data);
+			             break;
+			          case 3:
+			        	  System.out.print("Enter data to insert : ");
+			        	  data=sc.nextInt();
+			        	  System.out.print("Enter position : ");
+			        	  pos=sc.nextInt();
+			        	 ll.insert_by_pos(data, pos);
+			             break;
+			          case 4:  
+			        	  //System.out.print("Enter data to insert : ");
+			        	  //data=sc.nextInt();
+			        	  data=ll.del_first();
+			        	  System.out.print("Data deleted : " + data +"\n");
+		                  break;
+			          case 5:  
+			        	  System.out.print(ll);
+			        	  break;
+			          case 6: break;    
+			          default: System.out.print("Invalid choice..\n");
+			       }//end of switch
+			    }while(choice!=6);
+		}
+}
+
+_________________________________________
+
+Doubly LinkedList
+
+package Infoway_code;
+
+import java.util.Scanner;
+
+
+class DblyNode {
+	  int data;
+	  DblyNode prev, next; 
+
+	  public  DblyNode()
+	  {
+	    data = 0;
+	    prev = next = null;
+	  }
+
+	  
+	  public  DblyNode(int d)
+	  {
+	    data = d;
+	    prev = next = null;
+	  }
+
+	  int getData()
+	  {
+	    return data;
+	  }
+
+	  DblyNode getPrev()
+	  {
+	     return prev;
+	  }
+	  
+	  DblyNode getNext()
+	  {
+	     return next;
+	  }
+
+
+	  void setData(int d)
+	  {
+	     data = d;
+	  }
+	  
+	  void setPrev(DblyNode p)
+	  {
+	    prev = p;
+	  }
+
+	  void setNext(DblyNode n)
+	  {
+	     next = n;
+	  }
+	}
+
+	class DblyLinkedList{
+
+	  DblyNode head; 
+
+	  public void createList(int n)
+	  {
+	    int i,val;
+	    Scanner sc = new Scanner(System.in);
+	    for(i=1;i<=n;i++)
+	    {
+	       System.out.println("Enter data.");
+	       val = sc.nextInt();
+
+	       insert_last(val);
+	    }
+	 
+	  }
+
+
+	  void insert_last(int d)
+	  {
+	    DblyNode new_node = new DblyNode(d);
+
+	    if(head == null)
+	    {
+	       head = new_node;
+	       return;
+	    }
+
+	    DblyNode iter = head;
+	    
+	    while(iter.getNext() != null)
+	        iter = iter.getNext();
+
+	    new_node.setPrev(iter);
+	    iter.setNext(new_node);
+
+	    return;
+	  }
+
+
+	  void insert_first(int d)
+	  {
+	    DblyNode new_node = new DblyNode(d);
+
+	    if(head == null)
+	    {
+	       head = new_node;
+	       return;
+	    }
+	    
+	    new_node.setNext(head);
+	    head.setPrev(new_node);
+	    head = new_node;
+	    return;
+	  }
+
+	  public void insert_before(int d,int ele)
+	  {
+	     DblyNode new_node = new DblyNode(ele);
+	      
+	     if(head==null)
+	     {
+	        System.out.println("Empty..");
+	        return;
+	     }
+	     if(head.getData() == d)
+	     {
+	        new_node.setNext(head);
+	        head.setPrev(new_node);
+	        head=new_node;
+	        return;
+	     }
+	     DblyNode iter = head;
+	 
+	     while((iter.getData()!=d)&&(iter!=null))
+	           iter = iter.getNext();
+
+
+	     if(iter==null)
+	     {
+	        System.out.println("Not found..");
+	        return;
+	     }
+
+	     new_node.setPrev(iter.getPrev());
+	     new_node.setNext(iter);
+	     iter.getPrev().setNext(new_node);
+	     iter.setPrev(new_node);
+	     return;
+	  }
+  
+	 
+	  public String toString()
+	  {
+	     String str=" ";
+	     
+	     DblyNode iter = head;
+
+	     while(iter!=null)
+	     {
+	       str = str + "-> " +iter.getData();
+	       iter = iter.getNext();
+	     }
+	     str = str + "\n";
+	     return str;
+	  }
+
+      public int del_by_pos(int p)
+	  {
+        int d=-999;
+        DblyNode del;
+	    if(head==null)
+	    { 
+	    	System.out.println("List is empty ...");
+	        return d;
+	    }
+
+	    if(p==1)
+	    {
+	    	del = head;
+	        head = head.getNext();
+	        if( head !=null) {
+	            head.setPrev( null );
+	        }
+	        d=del.getData();
+	        del=null;
+	        return d;
+	    }
+	    int i;
+	    DblyNode iter = head;
+
+	    for( i = 1;  i < p; i++ ) {
+	        iter = iter.getNext();
+	        if( iter == null ) {
+	            return d;
+	        }
+	    }
+	    iter.getPrev().setNext(iter.getNext());
+	    if(iter.getNext()!=null)
+	        iter.getNext().setPrev(iter.getPrev());
+
+        del = iter;
+        d = del.getData();
+        del = null;
+        return d;
+	  }
+}
+	
+
+public class DblyLinkedListMain {
+
+	public static void main(String[] args) {
+		DblyLinkedList dl = new DblyLinkedList();
+		Scanner sc=new Scanner(System.in);
+		int choice, data, pos,ele;
+		do {
+		       System.out.print("1. Create List\n");
+		       System.out.print("2. Add at beginning \n");
+		       System.out.print("3. Add at end \n");
+		       System.out.print("4. insert_before \n");
+		       System.out.print("5. Print LL \n");
+		       System.out.print("6. Delete by position \n");
+		       System.out.print("7. Exit ");
+		       choice = sc.nextInt();
+		       switch(choice)
+		       {
+		          case 1:
+		        	  dl.createList(5);;
+		        	  break;
+		          case 2:
+		        	  System.out.print("Enter data to insert : ");
+		        	  data=sc.nextInt();
+		        	  dl.insert_first(data);
+		             break;
+		          case 3:
+		        	  System.out.print("Enter data to insert : ");
+		        	  data=sc.nextInt();
+		        	  dl.insert_last(data);
+		             break;
+		          case 4:
+		        	  System.out.print("Enter data before : ");
+		        	  data=sc.nextInt();
+		        	  System.out.print("Enter Element : ");
+		        	  ele=sc.nextInt();
+		        	  dl.insert_before(data, ele);
+		             break;
+		          case 5:  
+		        	  System.out.print(dl);
+		        	  break;
+		          case 6:  
+		        	  System.out.print("Enter pos to add : ");
+		        	  pos=sc.nextInt();
+		        	  System.out.println(dl.del_by_pos(pos));
+		        	  break;
+		          case 7:break;
+		          default: System.out.print("Invalid choice..\n");
+		       }//end of switch
+		    }while(choice!=7);
+		     sc.close();
+
+	}
+
+}
+

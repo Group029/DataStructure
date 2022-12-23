@@ -1,0 +1,327 @@
+1. count number of nodes in SinglyLL
+
+public int countNode()
+{
+  int cnt;
+  SListNode iter;
+
+  for(cnt=0,iter=head; iter!=null ; cnt++,iter=iter.getNext()) ;
+
+  return cnt;
+}
+
+
+public SListNode middle_ref()
+{
+  int cnt = countNode();
+  SListNode iter=head;
+
+  for(int i=1 ; i<=cnt /2 ; i++,iter=iter.getNext());
+
+  return iter;
+}
+
+
+
+public int middle_val()
+{
+ int cnt = countNode();
+  SListNode iter=head;
+
+  for(int i=1 ; i<=cnt /2 ; i++,iter=iter.getNext());
+
+  return iter.getData();
+}
+
+
+public void disp_alternate_node()
+{
+  SListNode iter = head;
+
+  while(iter!=null)
+  {
+    sysout(iter.getData());
+    if(iter.getNext()==null)
+         break;
+    iter = iter.getNext().getNext();
+
+  }
+}
+
+public void dele_alternate_node()
+{
+  SListNode iter = head, deletable;
+
+  while(iter!=null)
+  {
+    deletable = iter.getNext();
+    if(deletable!=null)
+      iter.setNext(deletable.getNext());
+     
+    iter=iter.getNext();
+    deletable = null;
+  }
+}
+
+
+public void reverse()
+{
+   SListNode prev, curr, next;
+
+   prev=null;
+   curr=head;
+
+   while(curr!=null)
+   {
+      next = curr.getNext();
+      curr.setNext(prev);
+      prev = curr;
+      curr = next;
+   }
+   head=prev;
+}
+
+
+___________________________________________
+
+stack using LL
+
+
+use class SListNode for class StackLL
+
+
+class SListNodeChar
+{
+  char ch;
+  SListNodeChar next;
+
+  public SListNodeChar()
+  {
+    ch = ' ';
+    next = null;
+  }
+
+  public SListNodeChar(char c)
+  {
+    ch = c;
+    next = null;
+  }
+
+  public void setData(char c)
+  {
+     ch = c;
+  }
+  public char getData()
+  {
+    return ch;
+  }
+  public SListNodeChar getNext()
+  {
+     return next;
+  }
+  public void setNext(SListNodeChar n)
+  {
+     next = n;
+  }
+}
+
+
+
+
+
+class StackLL {
+
+  SListNodeChar top;
+
+  
+  public StackLL() { top = null; }
+
+  public void push(char d)
+  {
+    SListNodeChar new_node = new SListNodeChar(d);
+
+    if(top == null)
+    {
+      top = new_node;
+      return;
+    }
+    new_node.setNext(top);
+    top = new_node;
+    return;
+  }
+
+
+  public char pop()
+  {
+    char d='@';
+    SListNodeChar deletable;
+
+    if(top==null)
+    {
+       sysout("Stack underflow...");
+       return d;
+    }
+    d = top.getData();
+
+    deletable = top;
+    top = top.getNext();
+    deletable = null;
+    return d;
+  }
+
+
+  public char peek()
+  {
+    char d='@';
+    SListNodeChar deletable;
+
+    if(top==null)
+    {
+       sysout("Stack underflow...");
+       return d;
+    }
+    d = top.getData();
+
+    return d;
+  }
+
+  public boolean isEmpty()
+  {
+    if(top == null)
+      return true;
+    else
+      return false;
+  }
+
+}
+
+
+
+
+class QueueLL{
+  SListNode front;
+
+  public QueueLL() { front = null; }
+
+  public void Enqueue(int d)
+  {
+    SListNode new_node = new SListNode(d);
+    SListNode iter;
+
+    if(front==null)
+    {
+       front = new_node;
+       return;
+    }
+    iter = front;
+
+    while(iter.getNext()!=null)
+       iter=iter.getNext();
+
+   
+    iter.setNext(new_node);
+
+    return;
+ }
+
+
+
+ public int Dequeue()
+ {
+   SListNode deletable;
+   int d=-999;
+
+   if(front==null)
+   {
+     retrun d;
+   }
+
+   d=front.getData();
+   deletable = front;
+   front = front.getNext();
+   deletable = null;
+   return d;
+ }
+
+ public boolen isEmpty()
+ {
+    if(front == null)
+      return true;
+    else
+      return false;
+ }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
